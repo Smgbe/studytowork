@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study to Work Budget Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one hero line on the left with the working tool beside it; a quiet product block underneath.
+   Tokens come from the Study to Work brand: deep teal, one amber moment, mint-white page. */
+:root{
+  --surface:#f1f8f5; --surface-raised:#ffffff; --ink:#10231f; --muted:#4a6b63; --hairline:#cfe3dc;
+  --brand:#0b7a66; --on-brand:#ffffff; --brand-deep:#064a3e; --brand-light:#17a58c;
+  --accent:#f5a524; --on-accent:#10231f; --bad:#a3411a; --good:#0b7a66; --field:#f6fbf9;
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --surface:#07241f; --surface-raised:#0c332c; --ink:#eaf5f1; --muted:#a9c9c0; --hairline:#1b4a41;
+    --brand:#17a58c; --on-brand:#07241f; --brand-deep:#0e6b59; --brand-light:#0b7a66;
+    --bad:#ffb08a; --good:#6fe0c8; --field:#0a2b25; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --surface:#07241f; --surface-raised:#0c332c; --ink:#eaf5f1; --muted:#a9c9c0; --hairline:#1b4a41;
+  --brand:#17a58c; --on-brand:#07241f; --brand-deep:#0e6b59; --brand-light:#0b7a66;
+  --bad:#ffb08a; --good:#6fe0c8; --field:#0a2b25; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 56px}
+.wrap{max-width:1080px;margin:0 auto}
+header{display:flex;align-items:center;gap:12px;padding:8px 0 28px}
+header svg{width:40px;height:40px;flex:none}
+.brandname{font-weight:800;font-size:20px;letter-spacing:-.02em}
+.brandname b{color:var(--accent);font-weight:800}
+.tagline{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:40px;align-items:start}
+@media (max-width:860px){.hero{grid-template-columns:minmax(0,1fr);gap:28px}}
+h1{font-size:clamp(34px,5.4vw,56px);line-height:1.04;letter-spacing:-.03em;font-weight:800;margin:0 0 18px;text-wrap:balance}
+h1 span{color:var(--brand)}
+.lede{font-size:20px;line-height:1.45;font-weight:500;color:var(--muted);margin:0 0 22px;max-width:30ch}
+.steps{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-weight:600}
+.steps li{display:flex;gap:12px;align-items:baseline}
+.steps i{font-style:normal;flex:none;width:26px;height:26px;border-radius:50%;background:var(--brand);color:var(--on-brand);font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+.tool{background:var(--surface-raised);border:1px solid var(--hairline);border-radius:28px;padding:24px;min-width:0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.tab{font:inherit;font-weight:700;font-size:15px;padding:10px 18px;border-radius:999px;border:1px solid var(--hairline);background:transparent;color:var(--ink);cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.tab:focus-visible,.btn:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.note{font-size:14px;color:var(--muted);margin:10px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px}
+@media (max-width:520px){.grid{grid-template-columns:minmax(0,1fr)}}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.field{position:relative}
+.field span{position:absolute;left:12px;bottom:11px;font-weight:700;color:var(--muted);pointer-events:none}
+input{width:100%;font:inherit;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink);background:var(--field);border:1px solid var(--hairline);border-radius:12px;padding:10px 12px 10px 38px}
+.funding{grid-column:1/-1;margin-top:6px;padding-top:16px;border-top:1px solid var(--hairline)}
+.result{margin-top:20px;border-radius:20px;background:var(--brand-deep);color:#fff;padding:20px}
+:root[data-theme="dark"] .result,:root:not([data-theme="light"]) .result{color:#eaf5f1}
+.rtop{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.pill{font-weight:800;font-size:15px;padding:6px 14px;border-radius:999px;background:var(--accent);color:var(--on-accent)}
+.pill.short{background:#ffd9c6;color:#6b2a0c}
+.big{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1.1;font-variant-numeric:tabular-nums;margin:10px 0 2px}
+.sub{font-size:14px;opacity:.85}
+.bars{display:grid;gap:8px;margin-top:16px}
+.bar{display:grid;grid-template-columns:78px minmax(0,1fr) 88px;gap:10px;align-items:center;font-size:13px;font-weight:600}
+.bar div{height:12px;border-radius:6px;background:rgba(255,255,255,.18);overflow:hidden}
+.bar div i{display:block;height:100%;border-radius:6px;background:var(--brand-light);transition:width .3s}
+.bar.c div i{background:var(--accent)}
+.bar b{text-align:right;font-variant-numeric:tabular-nums}
+.tips{margin:14px 0 0;padding:0;list-style:none;font-size:14px;display:grid;gap:4px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{font:inherit;font-weight:800;font-size:15px;padding:12px 20px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.primary{background:var(--accent);color:var(--on-accent)}
+.btn.ghost{background:transparent;color:inherit;border:1px solid rgba(255,255,255,.4)}
+.product{margin-top:56px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center;background:var(--brand-deep);color:#fff;border-radius:28px;padding:36px}
+:root[data-theme="dark"] .product,:root:not([data-theme="light"]) .product{color:#eaf5f1}
+@media (max-width:760px){.product{grid-template-columns:minmax(0,1fr);padding:24px}}
+.product h2{font-size:clamp(26px,4vw,36px);line-height:1.1;letter-spacing:-.02em;margin:0 0 12px;font-weight:800;text-wrap:balance}
+.product ul{margin:0 0 20px;padding:0;list-style:none;display:grid;gap:8px;font-weight:600}
+.product li::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--accent);margin-right:10px}
+.price{font-size:14px;opacity:.85;margin-top:10px}
+.cover{width:min(100%,260px);margin:0 auto;display:block;border-radius:10px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.fine{margin-top:32px;font-size:13px;color:var(--muted);max-width:70ch}
+@media (prefers-reduced-motion:reduce){.bar div i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#0B7A66"/><path d="M110 430 V270 A146 146 0 0 1 402 270 V430" fill="none" stroke="#F1F8F5" stroke-width="56"/><path d="M200 430 V270 A56 56 0 0 1 312 270 V430" fill="none" stroke="#17A58C" stroke-width="56"/><circle cx="256" cy="352" r="30" fill="#F5A524"/></svg>
+    <div><div class="brandname">Study <b>to</b> Work</div><div class="tagline">From classroom to career, abroad</div></div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Can your funding cover your <span>master's abroad?</span></h1>
+      <p class="lede">Add your real monthly costs and see in 30 seconds whether your plan fits.</p>
+      <ol class="steps">
+        <li><i>1</i> Pick Germany, Canada or your own numbers.</li>
+        <li><i>2</i> Replace the example costs with your city's prices.</li>
+        <li><i>3</i> Read the result, then fix the gap before you apply.</li>
+      </ol>
+    </div>
+
+    <div class="tool" id="tool">
+      <div class="tabs" role="group" aria-label="Country">
+        <button class="tab" data-c="de" aria-pressed="true">Germany (EUR)</button>
+        <button class="tab" data-c="ca" aria-pressed="false">Canada (CAD)</button>
+        <button class="tab" data-c="xx" aria-pressed="false">My own numbers</button>
+      </div>
+      <p class="note" id="note"></p>
+      <div class="grid" id="grid"></div>
+      <div class="field funding">
+        <label for="f">Monthly funding available</label>
+        <span id="fsym">€</span><input id="f" type="number" inputmode="decimal" min="0" step="10">
+      </div>
+
+      <div class="result" aria-live="polite">
+        <div class="rtop"><div class="sub">Total costs per month</div><div class="pill" id="pill">Fits</div></div>
+        <div class="big" id="total">0</div>
+        <div class="sub" id="diff"></div>
+        <div class="bars">
+          <div class="bar c"><span>Costs</span><div><i id="bc"></i></div><b id="vc"></b></div>
+          <div class="bar"><span>Funding</span><div><i id="bf"></i></div><b id="vf"></b></div>
+        </div>
+        <ul class="tips" id="tips"></ul>
+        <div class="actions"><button class="btn primary" id="copy">Copy my result</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="product">
+    <div>
+      <h2>Want the whole route, not just the budget?</h2>
+      <ul>
+        <li>The guide: funding, visa steps, job search, net salary, settling in</li>
+        <li>10 editable Word templates</li>
+        <li>14-sheet Excel budget workbook</li>
+      </ul>
+      <a class="btn primary" href="https://nestuge.com/aykfqxydm" rel="noopener">Get the guide</a>
+      <div class="price">€25 · digital download · Germany and Canada</div>
+    </div>
+    <svg class="cover" viewBox="0 0 260 368" role="img" aria-label="Book cover: From Education to Economic Impact">
+      <rect width="260" height="368" rx="10" fill="#0B7A66"/>
+      <path d="M0 368 V250 A130 130 0 0 1 260 250 V368 Z" fill="#064A3E" opacity=".55"/>
+      <path d="M60 368 V262 A70 70 0 0 1 200 262 V368 Z" fill="#17A58C"/>
+      <circle cx="200" cy="320" r="26" fill="#F5A524"/>
+      <text x="24" y="60" fill="#fff" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="24" letter-spacing="-.5">FROM</text>
+      <text x="24" y="88" fill="#fff" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="24" letter-spacing="-.5">EDUCATION</text>
+      <text x="24" y="116" fill="#fff" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="24" letter-spacing="-.5">TO ECONOMIC</text>
+      <text x="24" y="144" fill="#fff" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="24" letter-spacing="-.5">IMPACT</text>
+      <rect x="24" y="160" width="36" height="4" fill="#F5A524"/>
+    </svg>
+  </section>
+
+  <p class="fine">Example values are only examples: replace them with prices for your city. Germany: blocked account requirement of €11,904 per year (€992 a month), and Canada: minimum living costs of CAD 23,448 per year for a single applicant outside Quebec (applications from 1 September 2026), both found on 23 October 2026. These figures change, so confirm them with the German mission handling your visa and with IRCC. Canada's proof of funds also includes tuition and travel, which this check leaves out. This is a planning tool, not legal or financial advice.</p>
+</div>
+
+<script>
+const P={
+ de:{sym:'€',cur:'EUR',fund:992,note:'Funding preset: the blocked account release of €992 a month (€11,904 a year). Costs below are examples.',
+  items:[['Accommodation',450],['Health insurance',145],['Food',240],['Transport',0],['Phone and internet',30],['Study materials',35],['Personal costs and leisure',40],['Emergency savings',50]]},
+ ca:{sym:'$',cur:'CAD',fund:1954,note:'Funding preset: minimum living costs of CAD 23,448 a year, about CAD 1,954 a month. Tuition and travel are extra. Costs below are examples.',
+  items:[['Accommodation',900],['Health insurance',70],['Food',320],['Transport',100],['Phone and internet',40],['Study materials',50],['Personal costs and leisure',60],['Emergency savings',50]]},
+ xx:{sym:'',cur:'',fund:0,note:'Enter your own costs and your own monthly funding.',
+  items:[['Accommodation',0],['Health insurance',0],['Food',0],['Transport',0],['Phone and internet',0],['Study materials',0],['Personal costs and leisure',0],['Emergency savings',0]]}
+};
+let cur='de';
+const $=id=>document.getElementById(id);
+const grid=$('grid');
+function fmt(n){return new Intl.NumberFormat('en',{maximumFractionDigits:0}).format(Math.round(n))}
+function sym(){return P[cur].sym}
+function build(){
+  const c=P[cur];
+  $('note').textContent=c.note;
+  $('fsym').textContent=c.sym||'';
+  grid.innerHTML='';
+  c.items.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='field';
+    d.innerHTML='<label for="i'+i+'">'+it[0]+'</label><span>'+(c.sym||'')+'</span><input id="i'+i+'" type="number" inputmode="decimal" min="0" step="5" value="'+it[1]+'">';
+    grid.appendChild(d);
+  });
+  $('f').value=c.fund;
+  document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-pressed',b.dataset.c===cur?'true':'false'));
+  calc();
+}
+function calc(){
+  const c=P[cur];let tot=0;
+  c.items.forEach((_,i)=>{tot+=Math.max(0,parseFloat($('i'+i).value)||0)});
+  const f=Math.max(0,parseFloat($('f').value)||0);
+  const s=c.sym, diff=f-tot, fits=diff>=0;
+  $('total').textContent=s+fmt(tot);
+  $('diff').textContent=(fits?'Left over each month: ':'Short each month by: ')+s+fmt(Math.abs(diff))+' · per year: '+s+fmt(tot*12);
+  const pill=$('pill');pill.textContent=fits?'Fits':'Short by '+s+fmt(-diff);pill.className='pill'+(fits?'':' short');
+  const mx=Math.max(tot,f,1);
+  $('bc').style.width=(tot/mx*100)+'%';$('bf').style.width=(f/mx*100)+'%';
+  $('vc').textContent=s+fmt(tot);$('vf').textContent=s+fmt(f);
+  const t=$('tips');t.innerHTML='';
+  const add=x=>{const li=document.createElement('li');li.textContent=x;t.appendChild(li)};
+  if(!fits){add('Try cheaper housing, such as a student dormitory.');add('Look for a scholarship or a part-time job within legal limits.');add('Check what your university includes, such as a semester ticket.');}
+  else if(f>0){add('It fits on paper. Keep an emergency buffer, and add one-time costs: visa fee, deposit, flights.');}
+}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{cur=b.dataset.c;build()}));
+document.addEventListener('input',e=>{if(e.target.matches('input'))calc()});
+$('copy').addEventListener('click',async()=>{
+  const c=P[cur],s=c.sym;let tot=0;c.items.forEach((_,i)=>{tot+=Math.max(0,parseFloat($('i'+i).value)||0)});
+  const f=Math.max(0,parseFloat($('f').value)||0);
+  const txt='My monthly study-abroad budget: costs '+s+fmt(tot)+', funding '+s+fmt(f)+' ('+(f>=tot?'it fits':'short by '+s+fmt(tot-f))+'). Checked with the Study to Work budget check.';
+  try{await navigator.clipboard.writeText(txt);$('copy').textContent='Copied'}catch(e){
+    const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');$('copy').textContent='Copied'}catch(_){$('copy').textContent='Select and copy from the page'}ta.remove();
+  }
+  setTimeout(()=>{$('copy').textContent='Copy my result'},1800);
+});
+build();
+</script>
+</body>
+</html>
