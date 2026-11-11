@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study Letters Pack | Study to Work</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: same content and order. Immersive dark teal, glass cards, glowing cover, amber as the only action colour. */
+:root{color-scheme:dark;
+  --bg:#041A16; --fg:#EAF5F1; --muted:#9EC3B8; --line:rgba(255,255,255,.11); --card:rgba(255,255,255,.055); --card2:rgba(255,255,255,.09);
+  --brand:#2FD1B0; --deep:#0B7A66; --amber:#F5A524; --on-amber:#2A1B00; --surface:#072A23; --on-brand:#041A16;
+  --head:'Space Grotesk','Inter',system-ui,sans-serif; --text:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{color:var(--fg);font-family:var(--text);font-size:17px;line-height:1.6;
+  background:radial-gradient(900px 520px at 88% -4%,rgba(47,209,176,.24),transparent 62%),radial-gradient(760px 560px at -6% 34%,rgba(245,165,36,.09),transparent 60%),var(--bg);
+  padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.3rem,6.2vw,4rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:.8rem;letter-spacing:-.01em}
+h3{font-size:1.15rem;font-weight:700}
+p{margin:0 0 1rem;max-width:64ch}
+a{color:var(--brand)}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--brand);
+  background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.35rem .9rem;margin-bottom:1.1rem}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber)}
+.hero{display:grid;grid-template-columns:1fr minmax(0,310px);gap:3.5rem;align-items:center;padding-block:4rem 4.5rem;border-top:0}
+.hero h1{margin-bottom:1.2rem}
+.hero p.lead{font-size:1.2rem;color:var(--muted)}
+.price{display:flex;align-items:baseline;gap:.7rem;margin:1.6rem 0 1.1rem}
+.price b{font-family:var(--head);font-size:3rem;line-height:1}
+.price span{color:var(--muted);font-size:.95rem}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+.btn{display:inline-block;padding:.95rem 1.5rem;border-radius:12px;font-weight:700;text-decoration:none;border:1.5px solid transparent;font-size:1rem;line-height:1.2}
+.btn.primary{background:var(--amber);color:var(--on-amber);box-shadow:0 8px 30px rgba(245,165,36,.35)}
+.btn.ghost{border-color:rgba(255,255,255,.28);color:var(--fg);background:var(--card)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.note{font-size:.88rem;color:var(--muted);margin-top:1rem}
+.cover-wrap{position:relative}
+.cover-wrap::before{content:"";position:absolute;inset:-14% -22%;background:radial-gradient(closest-side,rgba(47,209,176,.38),transparent 70%);z-index:0}
+.cover{position:relative;z-index:1;width:100%;height:auto;border-radius:8px;display:block;transform:rotate(2.2deg);
+  box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.12)}
+section{padding-block:3.4rem;border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
+.item{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.4rem;backdrop-filter:blur(6px)}
+.item p{margin:.45rem 0 0;color:var(--muted);font-size:.97rem}
+.item .big{font-family:var(--head);font-size:2.6rem;font-weight:700;line-height:1;color:var(--brand);margin-bottom:.5rem}
+.route{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.4rem 0 0;padding:0;list-style:none}
+.route li{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:.45rem 1.1rem;font-size:.95rem;font-weight:600}
+.cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem;margin-top:1.5rem}
+.cmp .item h3{margin-bottom:.8rem;color:var(--amber)}
+.cmp ul{margin:0;padding-left:1.1rem}.cmp li{margin-bottom:.6rem}
+.src{font-size:.86rem;color:var(--muted);margin-top:1.1rem}
+details{border-bottom:1px solid var(--line);padding:1.05rem 0}
+summary{cursor:pointer;font-weight:600;font-size:1.06rem}
+details p{margin:.7rem 0 0;color:var(--muted)}
+.final{background:linear-gradient(135deg,#0B7A66,#064A3E);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:2.6rem;margin-block:1rem 3rem;
+  box-shadow:0 30px 80px rgba(11,122,102,.35)}
+.final h2{color:#F1F8F5}.final p{color:#CFE9E1}
+.final .btn.ghost{background:transparent;border-color:rgba(241,248,245,.45);color:#F1F8F5}
+footer{border-top:1px solid var(--line);padding-block:2rem 3rem;font-size:.85rem;color:var(--muted)}
+footer p{max-width:78ch}
+@media (max-width:720px){.hero{grid-template-columns:1fr;gap:2.5rem;padding-block:2.5rem 3rem}.cover-wrap{max-width:230px;margin:0 auto;order:-1}.final{padding:1.8rem}}
+@media (prefers-reduced-motion:no-preference){.btn{transition:transform .15s}.btn:hover{transform:translateY(-2px)}.item{transition:border-color .2s}.item:hover{border-color:rgba(47,209,176,.5)}}
+.packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.5rem}
+.packs .item .p{font-family:var(--head);font-size:1.9rem;font-weight:700;color:var(--amber);line-height:1;margin-bottom:.7rem}
+.packs .item .m{font-size:.85rem;color:var(--muted);margin-top:.8rem}
+.bundle{margin-top:1.1rem;border-color:rgba(245,165,36,.55);background:var(--card2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero" style="grid-template-columns:1fr">
+  <div>
+    <div class="eyebrow">Study Letters Pack</div>
+    <h1>Write your study letters with real facts</h1>
+    <p class="lead">A guide for your motivation letter, your Canadian study permit letter of explanation and your German Opportunity Card letter. Fact sheet, fill-in templates, ten adapted letters with scores, and a score sheet to grade your own.</p>
+    <div class="price"><b>€9</b><span>digital download</span></div>
+    <div class="btns">
+      <a class="btn primary" href="https://nestuge.com/olydyk2xc" target="_blank" rel="noopener">Buy on Nestuge</a>
+      <a class="btn ghost" href="https://selar.com/m/echezona-samuel-mgbecheta1" target="_blank" rel="noopener">Find it on Selar</a>
+      <a class="btn ghost" href="index.html">Back to all products</a>
+    </div>
+    <p class="note">You download the files at once. Nothing is posted to you.</p>
+  </div>
+</header>
+
+<section>
+  <div class="eyebrow">What you get</div>
+  <h2>The guide, ten letters, a score sheet and a workbook</h2>
+  <div class="grid">
+    <div class="item"><div class="big">42</div><h3>Page guide (PDF and Word)</h3><p>Read the PDF. Copy the fill-in templates from the Word file.</p></div>
+    <div class="item"><div class="big">10</div><h3>Adapted letters</h3><p>Each has a score, what works and what is still missing.</p></div>
+    <div class="item"><div class="big">6</div><h3>Criteria score sheet</h3><p>Opening, specifics, evidence, fit, consistency and language.</p></div>
+    <div class="item"><div class="big">25</div><h3>Page workbook (PDF)</h3><p>A designed workbook to fill in as you write.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">What it covers</div>
+  <h2>From the first fact sheet to the last check</h2>
+  <div class="grid">
+    <div class="item"><h3>Part 1: Motivation letter</h3><p>Motivation letter or letter of intent: structure, fact sheet, template, a sample and how to customise it.</p></div>
+    <div class="item"><h3>Part 2: Canada study permit</h3><p>The letter of explanation: what the officer decides, seven parts, a template, a sample, unusual situations and a consistency check.</p></div>
+    <div class="item"><h3>Part 3: Score and reuse</h3><p>Score sheet, proofreading, a letter tracker, and how to reuse your material across applications.</p></div>
+    <div class="item"><h3>Part 4: Ten adapted letters</h3><p>Master's and PhD letters, a study permit letter and a German Opportunity Card letter.</p></div>
+    <div class="item"><h3>Also inside</h3><p>Four upgrades for a weak letter, a funds worksheet and a ties worksheet for the study permit letter.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Who it is for</div>
+  <h2>For students who write their letters last</h2>
+  <p>It suits applicants to a master's or doctorate, and people applying for a Canadian study permit or the German Opportunity Card. The three rules of every letter in the pack: true, specific and consistent with your documents.</p>
+</section>
+
+<section>
+  <div class="eyebrow">Honest limits</div>
+  <h2>What it does not do</h2>
+  <p>The samples are adapted from application drafts, with names, dates and grades removed. Use them as models and never copy them, because committees and officers notice repeated text. The pack does not promise an admission, a scholarship or a visa.</p>
+  <p>It covers two visa routes only: the Canadian study permit and the German Opportunity Card. It does not cover other countries' visas, other scholarship letters or Quebec rules. Rules and figures change, so check the official sites before you submit. This is general guidance, not legal or immigration advice.</p>
+  <div class="btns">
+    <a class="btn primary" href="https://nestuge.com/olydyk2xc" target="_blank" rel="noopener">Buy on Nestuge for €9</a>
+    <a class="btn ghost" href="https://selar.com/m/echezona-samuel-mgbecheta1" target="_blank" rel="noopener">Find it on Selar</a>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">The author</div>
+  <h2>Echezona Samuel Mgbecheta</h2>
+  <p>I am an economist. I studied in Nigeria, Germany and Canada, and I now work in Germany. I wrote this pack so your letters say what is true about you, with facts a committee can check.</p>
+</section>
+</div>
+</body>
+</html>
