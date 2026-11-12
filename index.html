@@ -83,7 +83,7 @@ footer p{max-width:78ch}
 #contact .cic svg{width:24px;height:24px}
 #contact .cl{display:block;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;opacity:.75}
 #contact .cv{display:block;font-weight:700;font-size:1rem;overflow-wrap:anywhere}
-#contact .cname{margin:1.4rem 0 0;font-size:.9rem;color:var(--muted)}
+#social .cname{margin:1.4rem 0 0;font-size:.9rem;color:var(--muted)}
 #contact .ctile.main{grid-column:1/-1}
 #contact .ctile.main .cv{font-size:1.15rem;overflow-wrap:normal}
 @media (max-width:560px){#contact .cgrid{grid-template-columns:minmax(0,1fr)}#contact .ctile.main .cv{font-size:.82rem;overflow-wrap:anywhere}#contact .ctile{padding:1rem;gap:.8rem}#contact .cic{width:40px;height:40px}}
@@ -126,6 +126,26 @@ html,body{overflow-x:hidden}
 .picker button:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:6px}
 .picker .pl{margin-left:.6rem;font-size:.9rem;color:var(--muted);white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.picker button{transition:none}}
+
+/* social + rating */
+#social .cbox{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:24px;padding:2.2rem;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.03))}
+#social .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.4rem}
+#social .ctile{display:flex;gap:1rem;align-items:center;text-decoration:none;color:var(--fg);background:rgba(4,26,22,.55);border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.2rem}
+#social .ctile:hover{border-color:var(--amber)}
+#social .cic{flex:none;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(47,209,176,.16);color:var(--brand)}
+#social .cic svg{width:24px;height:24px}
+#social .cl{display:block;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;opacity:.75}
+#social .cv{display:block;font-weight:700}
+.picker{display:flex;gap:.25rem;align-items:center;margin:.4rem 0 1rem;flex-wrap:wrap}
+.picker button{background:none;border:0;padding:.1rem;cursor:pointer;font-size:2.2rem;line-height:1;color:rgba(255,255,255,.45)}
+.picker button.on{color:var(--amber);text-shadow:0 0 12px rgba(245,165,36,.5)}
+.picker button:hover{transform:scale(1.12)}
+.picker button:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:6px}
+.picker .pl{margin-left:.6rem;font-size:.9rem;color:var(--muted)}
+.rv-avg{display:flex;align-items:center;gap:.7rem;margin:1.2rem 0 0;font-weight:700}
+.rv-avg .st{color:var(--amber);font-size:1.4rem;letter-spacing:.1rem}
+#rv-after{display:none;margin-top:.6rem}
+.rv-ask{margin-top:1.6rem;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.4rem}.rv-ask h3{margin:0 0 .3rem}
 </style>
 </head>
 <body>
@@ -235,23 +255,19 @@ html,body{overflow-x:hidden}
   <div class="eyebrow">Reviews</div>
   <h2>What buyers say</h2>
   <p>Only real words from real buyers appear here. I do not write or buy reviews.</p>
-  <!-- ADD A REAL REVIEW: copy the block below into <div class="rv-list"> and replace the text.
-  <div class="rv"><div class="st">★★★★★</div><p>Review text exactly as the buyer wrote it.</p><cite>First name, product bought</cite></div>
-  -->
+  <!-- ADD A REAL REVIEW: add it to reviews.json in the GitHub repo. -->
   <div class="rv-empty" id="rv-empty">
     <div>
       <h3>No reviews yet. Be the first.</h3>
-      <div class="picker" id="picker" role="radiogroup" aria-label="Your rating">
-        <button type="button" role="radio" aria-checked="false" data-v="1" aria-label="1 star">&#9733;</button><button type="button" role="radio" aria-checked="false" data-v="2" aria-label="2 stars">&#9733;</button><button type="button" role="radio" aria-checked="false" data-v="3" aria-label="3 stars">&#9733;</button><button type="button" role="radio" aria-checked="false" data-v="4" aria-label="4 stars">&#9733;</button><button type="button" role="radio" aria-checked="false" data-v="5" aria-label="5 stars">&#9733;</button><span class="pl" id="pl">Tap a star to rate</span>
-      </div>
-      
-      <p>If you bought a Study to Work product, tell me what helped and what did not. Honest feedback is welcome, good or bad. I will show your first name only, and only with your permission.</p>
-      <a class="btn primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=samuelmgbecheta@gmail.com&amp;su=My%20review%20of%20Study%20to%20Work&amp;body=Product%20I%20bought%3A%0AMy%20rating%20%281%20to%205%29%3A%0AWhat%20helped%20me%3A%0AWhat%20could%20be%20better%3A%0A%0AMay%20I%20show%20this%20review%20with%20my%20first%20name%3F%20%28yes%20or%20no%29%3A%0AFirst%20name%3A" target="_blank" rel="noopener">Write a review (Gmail)</a> <button class="btn ghost" type="button" data-copy="samuelmgbecheta@gmail.com">Copy my email</button><p class="also">No Gmail? Send your review to <b>samuelmgbecheta@gmail.com</b>.</p>
+      <p>Bought a Study to Work product? Rate it below, then post your review on the store page where you bought it.</p>
     </div>
   </div>
+  <div class="rv-avg" id="rv-avg" style="display:none"></div>
   <div class="rv-list" id="rv-list"></div>
-  <div id="rv-ask" style="display:none;margin-top:1.4rem"><a class="btn primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=samuelmgbecheta@gmail.com&amp;su=My%20review%20of%20Study%20to%20Work" target="_blank" rel="noopener">Write a review (Gmail)</a> <button class="btn ghost" type="button" data-copy="samuelmgbecheta@gmail.com">Copy my email</button></div>
-
+  <div class="rv-ask" id="rv-ask"><h3>Rate your purchase</h3>
+      <div class="picker" id="picker" role="radiogroup" aria-label="Your rating"><button type="button" role="radio" aria-checked="false" data-v="1" aria-label="1 star">&#9734;</button><button type="button" role="radio" aria-checked="false" data-v="2" aria-label="2 stars">&#9734;</button><button type="button" role="radio" aria-checked="false" data-v="3" aria-label="3 stars">&#9734;</button><button type="button" role="radio" aria-checked="false" data-v="4" aria-label="4 stars">&#9734;</button><button type="button" role="radio" aria-checked="false" data-v="5" aria-label="5 stars">&#9734;</button><span class="pl" id="pl">Tap a star</span></div>
+      <div id="rv-after"><p style="margin:0 0 .7rem">Thank you. Now post your review where you bought it:</p><div class="btns"><a class="btn primary" href="https://nestuge.com/aykfqxydm" target="_blank" rel="noopener">Nestuge</a> <a class="btn ghost" href="https://selar.com/m/echezona-samuel-mgbecheta1" target="_blank" rel="noopener">Selar</a> <a class="btn ghost" href="https://samuelg2.gumroad.com/l/jfgkgv" target="_blank" rel="noopener">Gumroad</a></div><p class="note" style="margin-top:.7rem">If you want your review shown here, say so in it, and I will ask your permission before showing your first name.</p></div>
+  </div>
 </section>
 
 <section>
@@ -273,37 +289,21 @@ html,body{overflow-x:hidden}
   <p class="also">Also available on <a href="https://selar.com/m/echezona-samuel-mgbecheta1" target="_blank" rel="noopener">Selar</a> and <a href="https://samuelg2.gumroad.com/l/jfgkgv" target="_blank" rel="noopener">Gumroad</a>.</p>
 </div>
 
-<section id="contact">
+<section id="social" style="display:none">
   <div class="cbox">
-    <div class="eyebrow">Contact</div>
-    <h2>Contact me</h2>
-    <p>Write or call and I will answer. Please say which product you are asking about.</p>
-    <div class="cgrid">
-      <a class="ctile main" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=samuelmgbecheta@gmail.com&amp;su=Question%20about%20Study%20to%20Work" target="_blank" rel="noopener">
-        <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
-        <span><span class="cl">Email</span><span class="cv">samuelmgbecheta@gmail.com</span></span>
-      </a>
-      <a class="ctile" href="tel:+491784361291">
-        <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
-        <span><span class="cl">Phone</span><span class="cv">01784 361291</span></span>
-      </a>
-      <a class="ctile" href="https://selar.com/m/echezona-samuel-mgbecheta1" target="_blank" rel="noopener">
-        <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.5-5h-13z"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg></span>
-        <span><span class="cl">Store</span><span class="cv">My Selar store</span></span>
-      </a>
-    </div>
-    <p class="cname" id="copyline"><button class="btn ghost" type="button" data-copy="samuelmgbecheta@gmail.com" style="padding:.5rem .9rem;font-size:.85rem">Copy email address</button> <a href="mailto:samuelmgbecheta@gmail.com" style="margin-left:.6rem;color:var(--muted)">Open in my mail app</a></p><p class="cname">Echezona Samuel Mgbecheta, Study to Work</p>
+    <div class="eyebrow">Questions</div>
+    <h2>Questions about a product?</h2>
+    <p>Reach me on social media (message or comment) and say which product you mean. You will also find short, honest tips there on funding, permits and the job search for Germany and Canada.</p>
+    <div class="cgrid"><a class="ctile" data-net="youtube" href="#" target="_blank" rel="noopener" style="display:none"><span class="cic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3z"/></svg></span><span><span class="cl">Reach me on</span><span class="cv">YouTube</span></span></a><a class="ctile" data-net="facebook" href="#" target="_blank" rel="noopener" style="display:none"><span class="cic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"/></svg></span><span><span class="cl">Reach me on</span><span class="cv">Facebook</span></span></a><a class="ctile" data-net="x" href="#" target="_blank" rel="noopener" style="display:none"><span class="cic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.2 4.7H5.4z"/></svg></span><span><span class="cl">Reach me on</span><span class="cv">X</span></span></a><a class="ctile" data-net="instagram" href="#" target="_blank" rel="noopener" style="display:none"><span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><span><span class="cl">Reach me on</span><span class="cv">Instagram</span></span></a></div>
+    <p class="cname">Echezona Samuel Mgbecheta, Study to Work</p>
   </div>
 </section>
+
 
 <footer>
   <p>General guidance only, not legal, tax or immigration advice. Always check the official government and university sites for current rules and amounts.</p>
 </footer>
 </div>
-<script>
-document.addEventListener('click',function(e){var b=e.target.closest('[data-copy]');if(!b)return;var t=b.getAttribute('data-copy'),o=b.textContent;function done(){b.textContent='Copied';setTimeout(function(){b.textContent=o},1800)}
-if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){prompt('Copy this email:',t)})}else{prompt('Copy this email:',t)}});
-</script>
 <script>
 (function(){
 var list=document.getElementById('rv-list'),empty=document.getElementById('rv-empty');if(!list)return;
@@ -312,29 +312,35 @@ fetch('https://smgbe.github.io/studytowork/reviews.json?'+Date.now(),{cache:'no-
  if(!Array.isArray(a)||!a.length)return;
  var h='';a.forEach(function(x){if(!x||!x.text)return;var n=Math.max(1,Math.min(5,parseInt(x.stars,10)||5));
   h+='<div class="rv"><div class="st" aria-label="'+n+' out of 5">'+'\u2605'.repeat(n)+'\u2606'.repeat(5-n)+'</div><p>'+esc(x.text)+'</p><cite>'+esc(x.name||'Buyer')+(x.product?', '+esc(x.product):'')+'</cite></div>'});
+ var tot=0,cnt=0;a.forEach(function(x){if(x&&x.text){tot+=Math.max(1,Math.min(5,parseInt(x.stars,10)||5));cnt++}});
+ if(cnt){var av=tot/cnt,r=Math.round(av),box=document.getElementById('rv-avg');box.innerHTML='<span class="st" aria-hidden="true">'+'\u2605'.repeat(r)+'\u2606'.repeat(5-r)+'</span><span>'+av.toFixed(1)+' out of 5, from '+cnt+(cnt===1?' review':' reviews')+'</span>';box.style.display='flex'}
  if(h){list.innerHTML=h;var t=document.getElementById('rv-title');if(empty)empty.style.display='none';
-  var more=document.createElement('p');more.className='also';more.innerHTML='Bought a product? <a href="#rv-empty-wrap" id="rv-more">Add your review</a>.';list.after(more);
-  var w=document.getElementById('rv-ask');if(w)w.style.display='block'}
+  }
 }).catch(function(){});
 })();
 </script>
 <script>
+/* SOCIAL LINKS: paste your full page addresses between the quotes. Blank ones stay hidden. */
+var SOCIAL={youtube:"https://www.youtube.com/@echezonamgbecheta7278",facebook:"https://www.facebook.com/profile.php?id=61596166602925",x:"https://x.com/ESMpbaa",instagram:""};
+(function(){var any=false;Object.keys(SOCIAL).forEach(function(k){var u=SOCIAL[k];if(!u||!/^https:\/\//.test(u))return;var a=document.querySelector('#social [data-net="'+k+'"]');if(a){a.href=u;a.style.display='flex';any=true}});if(any)document.getElementById('social').style.display='block'})();
 (function(){
-var pk=document.getElementById('picker');if(!pk)return;var btns=pk.querySelectorAll('button'),pl=document.getElementById('pl'),rating=0;
+var pk=document.getElementById('picker');if(!pk)return;var btns=pk.querySelectorAll('button'),pl=document.getElementById('pl'),after=document.getElementById('rv-after'),rating=0;
 var words=['','Poor','Fair','Good','Very good','Excellent'];
-function paint(n){btns.forEach(function(b){var v=+b.dataset.v;b.classList.toggle('on',v<=n);b.textContent=v<=n?"\u2605":"\u2606"})}
-paint(0);
-function setUrl(){document.querySelectorAll('a[href^="https://mail.google.com/mail/"]').forEach(function(a){
- if(!/review/i.test(a.getAttribute('href')))return;var u=new URL(a.href),b=u.searchParams.get('body')||'';
- if(rating){b=b.replace(/My rating \(1 to 5\):.*/,'My rating (1 to 5): '+rating)}
- u.searchParams.set('body',b);a.href=u.toString()})}
+function paint(n){btns.forEach(function(b){var v=+b.dataset.v;b.classList.toggle('on',v<=n);b.textContent=v<=n?'\u2605':'\u2606'})}
 btns.forEach(function(b){
  b.addEventListener('mouseenter',function(){paint(+b.dataset.v)});
  b.addEventListener('focus',function(){paint(+b.dataset.v)});
- b.addEventListener('click',function(){rating=+b.dataset.v;btns.forEach(function(x){x.setAttribute('aria-checked',+x.dataset.v===rating?'true':'false')});paint(rating);pl.textContent=rating+' of 5: '+words[rating];setUrl()});
+ b.addEventListener('click',function(){rating=+b.dataset.v;btns.forEach(function(x){x.setAttribute('aria-checked',+x.dataset.v===rating?'true':'false')});paint(rating);pl.textContent=rating+' of 5: '+words[rating];after.style.display='block'});
 });
 pk.addEventListener('mouseleave',function(){paint(rating)});
 pk.addEventListener('focusout',function(){paint(rating)});
+})();
+(function(){
+fetch('https://smgbe.github.io/studytowork/reviews.json?'+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():[]}).then(function(a){
+ if(!Array.isArray(a))return;var v=a.filter(function(x){return x&&x.text}),n=v.length;if(!n)return;
+ var sum=0;v.forEach(function(x){sum+=Math.max(1,Math.min(5,parseInt(x.stars,10)||5))});var avg=sum/n,r=Math.round(avg);
+ var el=document.getElementById('rv-avg');el.innerHTML='<span class="st" aria-hidden="true">'+'\u2605'.repeat(r)+'\u2606'.repeat(5-r)+'</span><span>'+avg.toFixed(1)+' out of 5 from '+n+' review'+(n>1?'s':'')+'</span>';el.style.display='flex';
+}).catch(function(){});
 })();
 </script>
 </body>
