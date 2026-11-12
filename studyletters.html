@@ -102,7 +102,7 @@ footer p{max-width:78ch}
     <div class="btns">
       <a class="btn primary" href="https://nestuge.com/olydyk2xc" target="_blank" rel="noopener">Buy on Nestuge</a>
       <a class="btn ghost" href="https://selar.com/m/echezona-samuel-mgbecheta1" target="_blank" rel="noopener">Find it on Selar</a>
-      <a class="btn ghost" href="index.html">Back to all products</a>
+      <a class="btn ghost" href="https://smgbe.github.io/studytowork/index.html">Back to all products</a>
     </div>
     <p class="note">You download the files at once. Nothing is posted to you.</p>
   </div>
@@ -159,7 +159,7 @@ footer p{max-width:78ch}
     <h2>Questions before you buy?</h2>
     <p>Write or call and I will answer. Please say which product you are asking about.</p>
     <div class="cgrid">
-      <a class="ctile main" href="mailto:samuelmgbecheta@gmail.com?subject=Question%20about%20Study%20to%20Work">
+      <a class="ctile main" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=samuelmgbecheta@gmail.com&amp;su=Question%20about%20Study%20to%20Work" target="_blank" rel="noopener">
         <span class="cic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
         <span><span class="cl">Email</span><span class="cv">samuelmgbecheta@gmail.com</span></span>
       </a>
@@ -172,10 +172,14 @@ footer p{max-width:78ch}
         <span><span class="cl">Store</span><span class="cv">My Selar store</span></span>
       </a>
     </div>
-    <p class="cname">Echezona Samuel Mgbecheta, Study to Work</p>
+    <p class="cname" id="copyline"><button class="btn ghost" type="button" data-copy="samuelmgbecheta@gmail.com" style="padding:.5rem .9rem;font-size:.85rem">Copy email address</button> <a href="mailto:samuelmgbecheta@gmail.com" style="margin-left:.6rem;color:var(--muted)">Open in my mail app</a></p><p class="cname">Echezona Samuel Mgbecheta, Study to Work</p>
   </div>
 </section>
 
 </div>
+<script>
+document.addEventListener('click',function(e){var b=e.target.closest('[data-copy]');if(!b)return;var t=b.getAttribute('data-copy'),o=b.textContent;function done(){b.textContent='Copied';setTimeout(function(){b.textContent=o},1800)}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){prompt('Copy this email:',t)})}else{prompt('Copy this email:',t)}});
+</script>
 </body>
 </html>
