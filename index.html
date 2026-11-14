@@ -396,5 +396,11 @@ function route(){var h=(location.hash||'').replace('#','');
  else{sv.style.display='none';fr.removeAttribute('srcdoc');document.documentElement.style.overflow=''}}
 window.addEventListener('hashchange',route);route();})();
 </script>
+<script>
+/* Free sample button: a plain link to the PDF, so it opens in every browser and in app browsers. */
+(function(){var a=document.getElementById('sample-btn'),el=document.getElementById('stw-pdf');if(!a||!el)return;
+try{var s=atob(JSON.parse(el.textContent)),n=s.length,u=new Uint8Array(n);for(var i=0;i<n;i++)u[i]=s.charCodeAt(i);
+var url=URL.createObjectURL(new Blob([u],{type:'application/pdf'}));a.href=url;a.target='_blank';a.rel='noopener';a.setAttribute('download','Study_to_Work_Free_Sample.pdf')}catch(e){}})();
+</script>
 </body>
 </html>
